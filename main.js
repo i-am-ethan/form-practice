@@ -25,3 +25,30 @@ formTestYourName.addEventListener('input', () => {
     let yourNameValue = document.getElementById('your_name_value');
     yourNameValue.textContent = formTestYourName.value.length;
 })
+
+// const input = createElement('input');
+// input.value = 'ああ'
+// input.name = 'your_name';
+// input.type = 'text'
+// appendeChild
+
+//ファイルアップロード時のイベントはチェンジ
+
+const preview = document.forms.form_test1.preview;
+
+document.forms.form_test1.image_file.addEventListener('change', e => {
+    // console.log(e.target.files[0]);
+    const uploadFile = e.target.files[0];
+
+    //表示：FileReader
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        //ファイルを読み込んだ結果
+        // reader.result; //base64
+        preview.src = reader.result;
+        console.log(preview.src)
+    });
+    reader.readAsDataURL(uploadFile);
+
+});
+
